@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EEG211</string>
+    <string name="login_name">login for EEG</string>
+    <string name="details_name">Details</string>
+    <string name="splash_welcome">Care for your brain</string>
+    <string name="login_information">Information</string>
+</resources>
