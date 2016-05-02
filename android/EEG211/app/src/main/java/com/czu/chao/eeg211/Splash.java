@@ -116,9 +116,14 @@ public class Splash extends AppCompatActivity {
             }
         }).playOn(findViewById(R.id.imageView));
 
-        SharedPreferences preferences = getSharedPreferences("Yes", Context.MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("EEG", Context.MODE_PRIVATE);
 
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("Check", 0);// for debug the login activity
+
+        editor.commit();
         check = preferences.getInt("Check", 0);
+
         new CountDownTimer(5500, 1000) {
 
             @Override
@@ -128,24 +133,24 @@ public class Splash extends AppCompatActivity {
 
             //   @Override
             public void onFinish() {
-//                if (check == 0) {
-//                    intent = new Intent(Splash.this, Login.class);
-//                    startActivity(intent);
-//                    hb.stop();
-//                    finish();
-//                } else {
-//                    intent = new Intent(Splash.this, Details.class);
-//                    startActivity(intent);
-//                    hb.stop();
-//                    finish();
-//
-//
-//                }
+                if (check == 0) {
+                    intent = new Intent(Splash.this, Login.class);
+                    startActivity(intent);
+                    hb.stop();
+                    finish();
+                } else {
+                    intent = new Intent(Splash.this, Details.class);
+                    startActivity(intent);
+                    hb.stop();
+                    finish();
 
-                intent = new Intent(Splash.this,Login.class);
-                startActivity(intent);
-                hb.stop();
-                finish();
+
+                }
+
+//                intent = new Intent(Splash.this,Login.class);
+//                startActivity(intent);
+//                hb.stop();
+//                finish();
             }
 
         }.start();

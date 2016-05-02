@@ -42,7 +42,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton b1, b2, b3;
     SharedPreferences sharedPreferences;
-    String docmail, docnum, myname;
+    String docmail, docnum, objname,objAge;
     Button a1, a2, a3, a4;
 
 
@@ -97,8 +97,9 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
         b3.setOnClickListener(this);
-        sharedPreferences = getSharedPreferences("Yes", Context.MODE_PRIVATE);
-        myname = sharedPreferences.getString("myname", "Invalid");
+        sharedPreferences = getSharedPreferences("EEG", Context.MODE_PRIVATE);
+        objname = sharedPreferences.getString("objname", "Invalid");
+        objAge=sharedPreferences.getString("objAge", "Invalid");
         docmail = sharedPreferences.getString("docmail", "Invalid");
         docnum = sharedPreferences.getString("docnumber", "Invalid");
 
@@ -162,7 +163,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         });
 
 
-        a3.setText("Send A");
+        a3.setText("Start");
         a3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,7 +172,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        a4.setText("Send S");
+        a4.setText("Stop");
         a4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,11 +209,11 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.imageButton2:
-                String abc = "file://" + Environment.getExternalStorageDirectory() + "/ECG/ecg.txt";
+                String abc = "file://" + Environment.getExternalStorageDirectory() + "/EEG/eeg.txt";
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"mc0514@163,com"});
                 intent.putExtra(Intent.EXTRA_SUBJECT, "EEG Report");
-                intent.putExtra(Intent.EXTRA_TEXT, "PFA");
+                intent.putExtra(Intent.EXTRA_TEXT, objname);
                 intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(abc));
                 intent.setType("*/*");
                 startActivity(intent);
@@ -252,7 +253,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
                 }
                 File gpxfile = new File(root, "eeg.txt");
                 writer = new FileWriter(gpxfile);
-                writer.append("PFA report of " + myname + "\n");
+                writer.append("Report of " + objname + "Age: "+objAge+"\n");
 //                writer.flush();
 //                writer.close();
 //                Toast.makeText(MainActivity4.this, "Saved", Toast.LENGTH_SHORT).show();
