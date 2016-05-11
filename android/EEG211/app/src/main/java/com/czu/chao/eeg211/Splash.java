@@ -17,6 +17,15 @@ import com.nineoldandroids.animation.Animator;
 
 
 
+
+/*
+app for monitor the EEG&EMG
+auther: Mi Chao <mc0514@163.com>
+Date:   2016-5-9
+ */
+
+
+
 public class Splash extends AppCompatActivity {
 
     Intent intent;
@@ -31,7 +40,7 @@ public class Splash extends AppCompatActivity {
         tv=(TextView) findViewById(R.id.tv_welcome);
         hb=MediaPlayer.create(this,R.raw.heartbeat);
         hb.start();
-        tv.startAnimation(AnimationUtils.loadAnimation(Splash.this, android.R.anim.slide_in_left));
+        tv.startAnimation(AnimationUtils.loadAnimation(Splash.this, android.R.anim.fade_in));
         iv = (ImageView) findViewById(R.id.imageView);
 
         YoYo.with(Techniques.FadeIn).duration(1000).withListener(new Animator.AnimatorListener() {
@@ -139,7 +148,7 @@ public class Splash extends AppCompatActivity {
                     hb.stop();
                     finish();
                 } else {
-                    intent = new Intent(Splash.this, Details.class);
+                    intent = new Intent(Splash.this, ListActivity.class);
                     startActivity(intent);
                     hb.stop();
                     finish();

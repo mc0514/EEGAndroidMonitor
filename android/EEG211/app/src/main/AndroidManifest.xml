@@ -19,12 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login"
-            android:label="@string/login_name">
-        </activity>
-        <activity android:name=".Details"
-            android:label="@string/details_name">
-        </activity>
+        <activity
+            android:name=".Login"
+            android:label="@string/login_name"></activity>
+        <activity
+            android:name=".Details"
+            android:label="@string/details_name"></activity>
+        <activity android:name=".ListActivity"></activity>
     </application>
 
 </manifest>

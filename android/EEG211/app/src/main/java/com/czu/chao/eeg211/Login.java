@@ -90,7 +90,7 @@ public class Login extends AppCompatActivity {
 
                 editor.commit();
 
-                Intent intent = new Intent(Login.this, Details.class);
+                Intent intent = new Intent(Login.this, ListActivity.class);
                 startActivity(intent);
                 finish();
             }
