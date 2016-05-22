@@ -24,7 +24,7 @@
             <ImageButton android:id="@+id/BT_Monitor"
                 android:layout_column="0"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/BT_Monitor" />
+                android:src="@drawable/btmonitor" />
 
             <ImageButton
                 android:layout_width="wrap_content"

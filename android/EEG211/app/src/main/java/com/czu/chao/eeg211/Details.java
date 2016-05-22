@@ -16,6 +16,7 @@ import com.androidplot.xy.BoundaryMode;
 import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.PointLabelFormatter;
 import com.androidplot.xy.XYPlot;
+import android.util.Log;
 
 public class Details extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +24,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
     SharedPreferences sharedPreferences;
     String docmail, docnum, objname,objAge;
     Button a1, a2, a3, a4;
+    //BluetoothAdapter bluetoothAdapter;
     BluetoothConnect bluetoothConnect;
     android.os.Handler bluetoothIn;
     ConnectThread connectedThread;
@@ -57,7 +59,7 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         objAge=sharedPreferences.getString("objAge", "Invalid");
         docmail = sharedPreferences.getString("docmail", "Invalid");
         docnum = sharedPreferences.getString("docnumber", "Invalid");
-
+        //bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         bluetoothConnect=new BluetoothConnect();
         a1.setText("Enable bluetooth");
         a1.setOnClickListener(new View.OnClickListener() {
@@ -76,10 +78,14 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         a2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!bluetoothConnect.isEnabled()){
                 bluetoothConnect.pair();
                 connectedThread = new ConnectThread(bluetoothConnect.getBluetoothSocket());
                 connectedThread.start(something);
-                    }
+                    }else{
+                    Toast.makeText(Details.this,"please enable bluetooth!",Toast.LENGTH_SHORT).show();
+                }
+            }
                     //connectedThread = new ConnectedThread(bluetoothSocket);
                     //connectedThread.start();
 
@@ -95,7 +101,11 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         a3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!bluetoothConnect.isConnected()){
                 connectedThread.write("A");
+            }else{
+                    Toast.makeText(Details.this,"please connect the bluetooth",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -103,8 +113,12 @@ public class Details extends AppCompatActivity implements View.OnClickListener {
         a4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!bluetoothConnect.isConnected()){
                 connectedThread.write("S");
 
+            }else{
+                    Toast.makeText(Details.this,"please connect the bluetooth",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -20,10 +20,21 @@ public class BluetoothConnect {
     BluetoothDevice bluetoothDevice;
     BluetoothSocket bluetoothSocket;
     Set<BluetoothDevice> pairedDevice;
-    String address = "98:D3:31:30:3F:87";
+    String address ;
     android.os.Handler bluetoothIn;
-    int HandlerState = 0;
-    UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    int HandlerState ;
+    UUID BTMODULEUUID ;
+    boolean isconnected;
+
+
+    public BluetoothConnect()
+    {
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        isconnected=false;
+        HandlerState = 0;
+        address = "98:D3:31:30:3F:87";
+        BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    }
 
     public void pair()
     {
@@ -46,6 +57,7 @@ public class BluetoothConnect {
                 }
                 try {
                     bluetoothSocket.connect();
+                    isconnected=true;
                     Log.v("bluetooth", "bluetoothsocket connected");
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -65,6 +77,11 @@ public class BluetoothConnect {
     public boolean isEnabled()
     {
         return bluetoothAdapter.isEnabled();
+    }
+
+    public boolean isConnected()
+    {
+        return isconnected;
     }
 
     public BluetoothSocket getBluetoothSocket()

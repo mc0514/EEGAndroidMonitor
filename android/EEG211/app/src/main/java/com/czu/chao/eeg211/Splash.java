@@ -142,24 +142,24 @@ public class Splash extends AppCompatActivity {
 
             //   @Override
             public void onFinish() {
-                if (check == 0) {
-                    intent = new Intent(Splash.this, Login.class);
-                    startActivity(intent);
-                    hb.stop();
-                    finish();
-                } else {
-                    intent = new Intent(Splash.this, ListActivity.class);
-                    startActivity(intent);
-                    hb.stop();
-                    finish();
+//                if (check == 0) {
+//                    intent = new Intent(Splash.this, Login.class);
+//                    startActivity(intent);
+//                    hb.stop();
+//                    finish();
+//                } else {
+//                    intent = new Intent(Splash.this, ListActivity.class);
+//                    startActivity(intesnt);
+//                    hb.stop();
+//                    finish();
+//
+//
+//                }
 
-
-                }
-
-//                intent = new Intent(Splash.this,Login.class);
-//                startActivity(intent);
-//                hb.stop();
-//                finish();
+                intent = new Intent(Splash.this,ListActivity.class);
+                startActivity(intent);
+                hb.stop();
+                finish();
             }
 
         }.start();
